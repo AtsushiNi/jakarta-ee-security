@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
+<header class="shadow-2">
+    <h:form>
+        <p:menubar orientation="horizontal" autoDisplay="false">
+            <f:facet name="start">
+                <h:outputText value="Demo App" style="line-height: 47px; margin-right: 40px;" />
+            </f:facet>
+            <p:divider layout="vertical"/>
+            <p:menuitem value="home" outcome="/home.xhtml" icon="pi pi-fw pi-home"/>
+            <p:menuitem value="protected" outcome="/protected/index.xhtml" icon="pi pi-fw pi-lock" />
+            <p:menuitem value="admin" outcome="/protected/admin/index.xhtml" icon="pi pi-fw pi-lock" />
+            <p:divider layout="vertical" />
+        </p:menubar>
+    </h:form>
+</header>
+
+</html>

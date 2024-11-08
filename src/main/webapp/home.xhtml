@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="title">home</ui:define>
+		<ui:define name="content">
+			<h:form>
+				<h2>ユーザー作成</h2>
+				<div class="field">
+					<h:outputText for="user-name" styleClass="block" value="ユーザー名"/>
+					<p:inputText id="user-name" styleClass="block" value="#{homeBean.newUser.userName}" />
+				</div>
+
+				<div class="field">
+					<h:outputText for="password" styleClass="block" value="パスワード"/>
+					<p:inputText id="password" styleClass="block" value="#{homeBean.newUser.password}" />
+				</div>
+
+				<div class="field">
+					<h:outputText for="roles" styleClass="block" value="ロール" />
+					<p:selectManyMenu id="roles" value="#{homeBean.newUser.roles}">
+						<f:selectItems value="#{homeBean.getRoles()}" var="role" itemLabel="#{role.toString()}" itemValue="#{role}" />
+					</p:selectManyMenu>
+					↑Shit押下で複数選択可能
+				</div>
+
+				<p:commandButton value="作成" action="#{homeBean.createUser}" update="@form" ajax="false"/>
+
+				<h2 class="mt-5">ユーザー一覧</h2>
+				<p:dataTable value="#{homeBean.users}" var="user">
+					<p:column headerText="ユーザー名">
+						<h:outputText value="#{user.userName}" />
+					</p:column>
+					<p:column headerText="ロール">
+						<h:outputText value="#{user.roleNames}" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+
+</html>
