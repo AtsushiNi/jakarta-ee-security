@@ -9,8 +9,10 @@ import com.atsushini.jakartaee.security.demoapp.infrastructure.entity.UserEntity
 import com.atsushini.jakartaee.security.demoapp.infrastructure.entity.UserRoleEntity;
 
 import jakarta.enterprise.context.Dependent;
+import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash;
 import jakarta.transaction.Transactional;
 
 @Dependent
@@ -19,12 +21,15 @@ public class UserRepository {
     @PersistenceContext
     private EntityManager em;
 
+    @Inject
+    private Pbkdf2PasswordHash passwordHash;
+
     // ユーザーの作成
     public void create(UserDto userDto) {
         UserEntity user = new UserEntity();
 
         user.setUserName(userDto.getUserName());
-        user.setPassword(userDto.getPassword());
+        user.setHashedPassword(passwordHash.generate(userDto.getPassword().toCharArray()));
 
         List<UserRoleEntity> userRoles = userDto.getRoles().stream().map(role -> {
             UserRoleEntity userRole = new UserRoleEntity();
