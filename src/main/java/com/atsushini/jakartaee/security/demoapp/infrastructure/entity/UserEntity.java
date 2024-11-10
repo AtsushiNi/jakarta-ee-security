@@ -24,8 +24,8 @@ public class UserEntity implements Serializable {
     @Column(name = "user_id")
     private Integer userId;
 
-    @Column(name = "password")
-    private String password;
+    @Column(name = "hashed_password")
+    private String hashedPassword;
 
     @Column(name = "user_name", unique = true)
     private String userName;
