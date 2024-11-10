@@ -12,8 +12,13 @@
             <p:divider layout="vertical"/>
             <p:menuitem value="home" outcome="/home.xhtml" icon="pi pi-fw pi-home"/>
             <p:menuitem value="protected" outcome="/protected/index.xhtml" icon="pi pi-fw pi-lock" />
-            <p:menuitem value="admin" outcome="/protected/admin/index.xhtml" icon="pi pi-fw pi-lock" />
+            <p:menuitem value="admin" outcome="/admin/index.xhtml" icon="pi pi-fw pi-lock" />
             <p:divider layout="vertical" />
+            <p:menuitem value="log out" action="#{headerBean.logout}" rendered="#{headerBean.currentUser != null}" />
+            <p:menuitem value="log in" outcome="/login.xhtml" rendered="#{headerBean.currentUser == null}"/>
+            <f:facet name="end">
+                <h:outputText value="#{headerBean.currentUser.userName}" rendered="#{headerBean.currentUser != null}" style="padding: 0.7rem; display: block;"/>
+            </f:facet>
         </p:menubar>
     </h:form>
 </header>
